@@ -46,8 +46,6 @@ class MainFrame extends JFrame {
         yearInt = yearI;
         managePanel.add(comboYear); //раположение списка на панели
 
-        System.out.println("dsdfsgdfsgdfsg");
-
         // будем следить за нажатиями кнопки
         comboMonth.addActionListener(new comboMonthL());
         comboYear.addActionListener(new comboYearL());
