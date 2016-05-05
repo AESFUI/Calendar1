@@ -25,7 +25,7 @@ class MainFrame extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         JPanel managePanel = new JPanel(); //панель со списком
-        managePanel.setLayout(new GridLayout(1, 3)); //создание панели
+        managePanel.setLayout(new GridLayout(1, 2)); //создание панели
 
         JComboBox<String> comboMonth = new JComboBox<>();
 
