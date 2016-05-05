@@ -27,6 +27,9 @@ class MainFrame extends JFrame {
         JPanel managePanel = new JPanel(); //панель со списком
         managePanel.setLayout(new GridLayout(1, 2)); //создание панели
 
+        /*
+        Список месяцев
+         */
         JComboBox<String> comboMonth = new JComboBox<>();
 
         for (int i = 1; i <= 12; i++) {                 //наполнение списка месяцев значениями
@@ -38,6 +41,9 @@ class MainFrame extends JFrame {
         monthInt = comboMonth.getSelectedIndex();
         managePanel.add(comboMonth); //расположение списка на панели
 
+        /*
+        Список годов
+         */
         JComboBox<Integer> comboYear = new JComboBox<>();
         for (int i = 1900; i <= 2100; i++)    //наполнение списка годов значениями
             comboYear.addItem(i);
@@ -46,10 +52,16 @@ class MainFrame extends JFrame {
         yearInt = yearI;
         managePanel.add(comboYear); //раположение списка на панели
 
-        // будем следить за нажатиями кнопки
+
+        /*
+        Будем следить за списками
+         */
         comboMonth.addActionListener(new comboMonthL());
         comboYear.addActionListener(new comboYearL());
 
+        /*
+        Панель с календарём
+         */
         JPanel calendarPanel = new JPanel(); //панель с календарём
         calendarPanel.add(textMonth = new JTextArea(7, 14)); //добавление поля вывода календаря
 
@@ -60,10 +72,23 @@ class MainFrame extends JFrame {
 
         textMonth.setText(outCalendar(comboMonth.getSelectedIndex(), yearI)); //вывод чисел календаря
 
+
+        /*
+        Кнопка "OK" подтверждения выбора даты
+         */
+        JPanel button = new JPanel();
+        JButton ok = new JButton("Выбор");
+        //ok.addActionListener(new );
+        button.add(ok);
+
+        /*
+        Окончательная инициализация окна
+         */
         add(managePanel, BorderLayout.NORTH);
-        add(calendarPanel, BorderLayout.SOUTH);
+        add(calendarPanel, BorderLayout.CENTER);
         managePanel.setVisible(true);
-        calendarPanel.setVisible(true);
+        calendarPanel.setVisible(true); //достаточно видимости любой из панелей! Хм...
+        add(button, BorderLayout.SOUTH);
 
         pack();
     }
@@ -76,6 +101,9 @@ class MainFrame extends JFrame {
         cal.set(year, month, 1);
         int dow = cal.get(Calendar.DAY_OF_WEEK) - 1; //день недели, где 1 - понедельник
         int dom = cal.getActualMaximum(Calendar.DAY_OF_MONTH); //число дней в месяце
+
+
+        //!!! Надо переделать вывод, приняв числа за элементы JList, тогда можно будет получить обратную связь
 
         //создать накопительный список символов с разбиением на недели,
         //первая строка - названия дней недели
